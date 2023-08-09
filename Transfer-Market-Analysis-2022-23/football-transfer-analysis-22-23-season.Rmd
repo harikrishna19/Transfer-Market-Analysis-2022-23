@@ -34,7 +34,7 @@ Let's look at Chelsea's spending with the likes of Enzo Fernandez
 
 But they have signed a lot of players
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 library(tidyverse)
 library(ggthemes)
 library(worldfootballR)
@@ -45,7 +45,7 @@ library(gridExtra)
 library(grid)
 ```
 
-```{r warning=FALSE,}
+```{r warning=FALSE}
 data=read.csv('Transfers.csv')
 
 #Formatting nos to currncy
@@ -152,10 +152,14 @@ mci_data$Wk<-as.numeric(mci_data$Wk)
 
 ```
 
-```{r fig.width=10,fig.height=5}
+```{r fig.width=9}
 
-
-
+# city_icon<-readPNG("city_icon.PNG")
+# city_icon<-rasterGrob(city_icon,interpolate = T)
+# 
+# 
+# ars_icon<-readPNG("download.PNG")
+# ars_icon<-rasterGrob(ars_icon,interpolate = T)
 
 gg_arsenal <- ggplot(ars_data, aes(x = Wk, y = Points, color = "Arsenal")) +
   geom_line() +
@@ -163,24 +167,35 @@ gg_arsenal <- ggplot(ars_data, aes(x = Wk, y = Points, color = "Arsenal")) +
   scale_x_continuous(limits = c(1, 38), breaks = seq(1, 38, by = 1))+
   scale_y_continuous(breaks = c(0, 1, 3)) +
   labs(x = "MatchWeek", y = "Wk", color = "Team") +
-  scale_color_manual(values = c("Arsenal" = "red"))+theme_wsj()
-
-
-
+  scale_color_manual(values = c("Arsenal" = "red"))+theme_classic()
 gg_city <- ggplot(mci_data, aes(x = Wk, y = Points, color = "Man City")) +
   geom_line() +
   geom_point() +
   scale_x_continuous(limits = c(1, 38), breaks = seq(1, 38, by = 1))+
   scale_y_continuous(breaks = c(0, 1, 3)) +
   labs(x = "MatchWeek", y = "Wk", color = "Team") +
-  scale_color_manual(values = c("Man City" = "blue"))+theme_wsj()
-
+  scale_color_manual(values = c("Man City" = "blue"))+theme_classic()
 
 # Combine the plots using the patchwork package
-combined_plot <- gg_arsenal / gg_city
+gg_arsenal/gg_city
 
-combined_plot
 
 
 
 ```
+
+What a title race:Terrific
+
+3.Number of signing per pl team
+
+4.Arsenal London Derbies record
+
+5.NewCastle signings
+
+```{r}
+View(data)
+```
+
+\
+
+Article to be out on 9/08/2023(Thursday)
